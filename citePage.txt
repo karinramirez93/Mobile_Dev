@@ -1,0 +1,2 @@
+characters: https://www.shutterstock.com/image-vector/lineart-fantasy-set-rpg-game-heroes-1348668977?dd_referrer=https%3A%2F%2Fwww.google.com%2F
+enemies: https://www.shutterstock.com/search/enemy-rpg?image_type=vector

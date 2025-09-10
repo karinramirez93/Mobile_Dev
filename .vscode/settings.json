@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "cstdlib": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "iterator": "c",
+        "xhash": "c",
+        "xmemory": "c",
+        "xtree": "c",
+        "xutility": "c"
+    }
+}
