@@ -31,10 +31,7 @@ const StartScreen = ( {navigation}) => {
                             //Style={({pressed}) => pressed && styles.iosPressable}
                         
                         >
-                        <Text style={styles.pressableText}> Start Playing</Text>
-                        <Text style={styles.pressableText}> Score</Text>
-                        <Text style={styles.pressableText}> Quit</Text>
-                        
+                        <Text style={styles.pressableText}> Sstart Playing</Text>
 
                         </Pressable>                
                     </View>
@@ -97,7 +94,6 @@ const StartScreen = ( {navigation}) => {
             color: "blue", // pressable text color
             backgroundColor: "#d1bee0ff",
             margin: 10, // margin around del recuadro para el pressable
-            
             
         },
         //IOS style

@@ -1,35 +1,36 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import StartScreen from './StartScreen';
+import SecondScreen from './SecondScreen';
 
-import { MenuFunctions } from './Game_Menu';
+let Stack = createNativeStackNavigator();
 
-
-export default function App() {
-
-   MenuFunctions();
+const  App = () => {
   return (
-    
-    <View style={styles.container}>
-      {/* MenuFuncion has all the information related with the menu settings.
-          and it is a component */}
-       <MenuFunctions/>
-   
-      
+    <>
+    <StatusBar style= "auto" />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name= "Screen1" component={StartScreen} />
+        <Stack.Screen name= "Screen2" component={SecondScreen} />
+      </Stack.Navigator>
 
-      <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
+    </>
   );
- 
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1e3f99ff',
-   // alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    alignItems: 'center',
     justifyContent: 'center',
   },
-
-
-
 });
+
+
+export default App;
