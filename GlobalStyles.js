@@ -12,6 +12,27 @@ export const GlobalStyles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: 100,
     },
+    text: {
+            fontSize: 32,
+            maxWidth: 300,
+            padding: 1,
+            margin: 10,
+           
+        },
+    title:{
+       // flex:1,
+       
+        flexDirection: "column",
+        backgroundColor: '#656479ff',
+        alignItems: "center",
+        justifyContent: 'flex-start',
+       // paddingTop: 100,
+        borderBottomWidth: 4,
+        borderColor: "#18ea54ff",
+        maxWidth: 300,
+
+
+    },
     
     //ANDROID pressable style
     ripple: {
@@ -39,6 +60,7 @@ export const GlobalStyles = StyleSheet.create({
         margin: 10, // margin around del recuadro para el pressable
         justifyContent: 'center',
         // padding: 100,
+        
         
         
         

@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react"; // track pages state
-import {StyleSheet, Text, View, Pressable } from "react-native";
+import {Stylesheet, Text, View, Pressable } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { GlobalStyles } from "./GlobalStyles";
+
 
 const StartScreen = ( {navigation}) => {
     
@@ -15,23 +17,23 @@ const StartScreen = ( {navigation}) => {
    // we will make a function to contain all we have done so far
     //then we will need to call the function inside the StartScreen return
 
-    let startScreenJSX = 
-            <View style={styles.container}>
-                    <View style={styles.container}>
-                        <Text style={styles.text}> King Rescue! </Text>
+    let characterScreenJSX = 
+            <View style={GlobalStyles.container}>
+                    <View style={GlobalStyles.title}>
+                        <Text style={[GlobalStyles.text, {fontSize: 20, color: '#ffffffff',}]}> customize your warrior! </Text>
                     </View>
 
-                    <View style={styles.container}>
+                    <View style={GlobalStyles.container}>
                         <Pressable
-                            android_ripple={styles.ripple} // style information provided for android only
+                            android_ripple={GlobalStyles.ripple} // style information provided for android only
                         // onPress={pressHandler} // call pressHandler function to see if it works on console
-                        onPress={() => {navigation.navigate("Screen2")}} // switch to the next or 1 screen
+                        onPress={() => {navigation.navigate("Main_Menu")}} // switch to the next or 1 screen
                             style={iosStyleHandler} // function to work on IOS
                             //shortWay
-                            //Style={({pressed}) => pressed && styles.iosPressable}
+                            //Style={({pressed}) => pressed && GlobalStyles.iosPressable}
                         
                         >
-                        <Text style={styles.pressableText}> Start Playing</Text>
+                        <Text style={[GlobalStyles.pressableText, {marginTop: 400,}]}> Start Game</Text>
 
                         </Pressable>                
                     </View>
@@ -44,11 +46,11 @@ const StartScreen = ( {navigation}) => {
 
         return ( // can only return one thing or function at the time
         //secondScreenJSX // calling that function and now the return looks cleaner
-            startScreenJSX
+            characterScreenJSX
         );
     
 
-    } // end let startScreenJSX
+} // end let startScreenJSX
 
     // pressable function to display in the console
     const pressHandler = function () {
@@ -57,50 +59,11 @@ const StartScreen = ( {navigation}) => {
     // IOS function to work on IOS devices
     const iosStyleHandler = function (pressObject) {
         if(pressObject.pressed){
-            return styles.iosPressable;
+            return GlobalStyles.iosPressable;
         }
     }
 
-    const styles = StyleSheet.create({
-        container: {
-            flex:1,
-            flexDirection: "column",
-            backgroundColor: '#656479ff',
-            alignItems: "center",
-            justifyContent: "center",
-            
-        },
-        text: {
-            fontSize: 32,
-            maxWidth: 300,
-            padding: 12,
-            margin: 12,
-            borderBottomWidth: 4,
-            borderColor: "#18ea54ff",
-            
-        },
-        //ANDROID pressable style
-        ripple: {
-            color: 'red',
-        
-        },
     
-        pressableText:{
-            fontSize: 32, // pressable text fontSize
-            maxWidth: 300, // length of the row
-            padding: 4,
-            textAlign: "center",
-            borderRadius: 5,
-            color: "blue", // pressable text color
-            backgroundColor: "#d1bee0ff",
-            margin: 10, // margin around del recuadro para el pressable
-            
-        },
-        //IOS style
-        iosPressable:{
-            opacity: 0.5
-            
-        },
-}); //end styleSheet()
+
 
 export default StartScreen;
