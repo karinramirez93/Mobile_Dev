@@ -5,7 +5,8 @@ import App from './App';
 // import ListScreen from './ListScreen';
  import ButtonPracticeScreen from './ButtonPractice';
  import StartScreen from './StartScreen';
- import SecondScreen from './SecondScreen';
+ import CharacterCreator from './CharacterCreator';
+ import ScoreScreen from './ScoreHistory';
 
  
  

@@ -31,7 +31,7 @@ const StartScreen = ( {navigation}) => {
                             //Style={({pressed}) => pressed && styles.iosPressable}
                         
                         >
-                        <Text style={styles.pressableText}> Sstart Playing</Text>
+                        <Text style={styles.pressableText}> Start Playing</Text>
 
                         </Pressable>                
                     </View>
@@ -43,7 +43,7 @@ const StartScreen = ( {navigation}) => {
 
 
         return ( // can only return one thing or function at the time
-        //startScreenJSX // calling that function and now the return looks cleaner
+        //secondScreenJSX // calling that function and now the return looks cleaner
             startScreenJSX
         );
     
@@ -101,6 +101,6 @@ const StartScreen = ( {navigation}) => {
             opacity: 0.5
             
         },
-}); //end StartScreen()
+}); //end styleSheet()
 
 export default StartScreen;

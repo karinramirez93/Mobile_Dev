@@ -17,7 +17,7 @@ const ButtonPracticeScreen = () => {
         <Pressable 
             android_ripple={ styles.ripple}
             onPress={pressHandler}>
-                style={iosStyleHandler}
+            style={iosStyleHandler}
                 {/* style={({pressed}) => {
                     if(pressed){
                         return styles.iosPressable;

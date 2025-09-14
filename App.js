@@ -3,7 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StartScreen from './StartScreen';
-import SecondScreen from './SecondScreen';
+import CharacterCreator from './CharacterCreator';
+import { GlobalStyles } from './GlobalStyles';
 
 let Stack = createNativeStackNavigator();
 
@@ -13,8 +14,8 @@ const  App = () => {
     <StatusBar style= "auto" />
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name= "Screen1" component={StartScreen} />
-        <Stack.Screen name= "Screen2" component={SecondScreen} />
+        <Stack.Screen  name= "Main_Menu" component={StartScreen} options={{headerTitleAlign: 'center',}}/>
+        <Stack.Screen name= "Character Creator" component={CharacterCreator} options={{headerTitleAlign: 'center',}}/>
       </Stack.Navigator>
 
     </NavigationContainer>
