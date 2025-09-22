@@ -2,26 +2,32 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import StartScreen from './StartScreen';
-import CharacterCreator from './CharacterCreator';
-import ScoreScreen from './ScoreHistory';
-//import { GlobalStyles } from './GlobalStyles';
+
+import StartScreen from './src/screens/StartScreen';
+import CharacterCreator from './src/screens/CharacterCreator';
+import ScoreScreen from './src/screens/ScoreHistory';
+import CharacterPicker from './src/screens/CharacterPicker';
+
 
 let Stack = createNativeStackNavigator();
 
 const  App = () => {
   return (
-    <>
-    <StatusBar style= "auto" />
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen  name= "Main_Menu" component={StartScreen} options={{headerTitleAlign: 'center',}}/>
-        <Stack.Screen name= "Character Creator" component={CharacterCreator} options={{headerTitleAlign: 'center',}}/>
-        <Stack.Screen name= "ScoreBoard" component={ScoreScreen} options={{headerTitleAlign: 'center',}}/>
-      </Stack.Navigator>
+    
+      <>
+      <StatusBar style= "auto" />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen  name= "Main_Menu" component={StartScreen} options={{headerTitleAlign: 'center',}}/>
+          <Stack.Screen name= "Character Creator" component={CharacterCreator} options={{headerTitleAlign: 'center',}}/>
+          <Stack.Screen name= "ScoreBoard" component={ScoreScreen} options={{headerTitleAlign: 'center',}}/>
+          <Stack.Screen name= "Character Picker" component={CharacterPicker} options={{headerTitleAlign: 'center',}}/>
 
-    </NavigationContainer>
-    </>
+        </Stack.Navigator>
+
+      </NavigationContainer>
+      </>
+    
   );
 }
 

@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react"; // track pages state
 import {StyleSheet, Text, View, Pressable } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { GlobalStyles } from "./GlobalStyles";
+import { GlobalStyles } from "../components/GlobalStyles";
 
 
 
@@ -26,19 +26,20 @@ const StartScreen = ( {navigation}) => {
                                        
 
                     <View style={GlobalStyles.container}>
+                       
                         <MenuButton 
                             label="Start Playing" 
-                            onPress={() => navigation.navigate("Character Creator")} 
+                            // onPress={() => console.log("Start Playing")} 
+                            onPress={() => navigation.navigate("Character Picker")}
                         />
                         <MenuButton 
                             label="Score" 
                             // onPress={() => console.log("ScoreBoard")} 
                             onPress={() => navigation.navigate("ScoreBoard")}
                         />
-                        <MenuButton 
-                            label="Quit" 
-                            onPress={() => console.log("Quit pressed")} 
-                        />
+
+
+                        
 
                     </View>
 

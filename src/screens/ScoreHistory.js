@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { GlobalStyles } from "./GlobalStyles"; 
+import { GlobalStyles } from "../components/GlobalStyles"; 
 
 
 

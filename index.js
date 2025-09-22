@@ -1,12 +1,9 @@
 import { registerRootComponent } from 'expo';
 
 import App from './App';
-// import NewScreen from './ComponentsScreen';
-// import ListScreen from './ListScreen';
- import ButtonPracticeScreen from './ButtonPractice';
- import StartScreen from './StartScreen';
- import CharacterCreator from './CharacterCreator';
- import ScoreScreen from './ScoreHistory';
+
+
+
 
  
  
