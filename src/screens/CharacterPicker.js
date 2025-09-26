@@ -3,10 +3,9 @@ import CharacterImageDetail from "../components/CharacterImageDetails";
 
 const CharacterPicker = ({Navigation}) => {
     let picker = 
-    <View style={StyleSheet.backGroundContainer}>
-        <View style={styles.backGroundContainer}>
-            <Text style={styles.text}> Pick Your Warrior</Text>
-        </View>
+    <View style={styles.container}>
+            <Text style={styles.title}> Pick Your Warrior</Text>
+
 
         <SafeAreaView>
             <View>
@@ -40,18 +39,17 @@ const CharacterPicker = ({Navigation}) => {
     );
 }// end characterPicker()
 
+
 const styles = StyleSheet.create({
-    backGroundContainer:{
-        flex:1,
+    container:{
         alignItems: 'center',
-        justifyContent: 'center',
-       // borderColor: 'red',
-       // borderWidth: 5,
+        paddingTop: 24,
     },
-    text:{
-        fontSize: 30,
-        
-    },
+    title: {
+        fontSize: 40,
+        marginBottom: 16,
+        color: "#010101ff"
+    }
 
 });// end styleSheet
 
