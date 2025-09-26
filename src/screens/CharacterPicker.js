@@ -1,9 +1,16 @@
-import{View, Text, StyleSheet, SafeAreaView} from "react-native";
+import{View, Text, StyleSheet, SafeAreaView, ImageBackground} from "react-native";
 import CharacterImageDetail from "../components/CharacterImageDetails";
+
+const bgImage = require("../../pictures/arena/characterPickerBG.jpg");
 
 const CharacterPicker = ({navigation}) => {
     let picker = 
-    <View style={styles.container}>
+     <ImageBackground
+                source={bgImage}
+                style={{flex: 1}}
+                resizeMode="cover"
+                >
+    <View style={[styles.container, {backgroundColor: "transparent"}]}>
             <Text style={styles.title}> Pick Your Warrior</Text>
 
 
@@ -32,10 +39,13 @@ const CharacterPicker = ({navigation}) => {
             </View>
         </SafeAreaView>
     </View>
+    </ImageBackground>
 
 
     return(
+       
         picker
+        
     );
 }// end characterPicker()
 
@@ -48,7 +58,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 40,
         marginBottom: 16,
-        color: "#010101ff"
+        color: "#f5f5f5ff"
     }
 
 });// end styleSheet

@@ -3,7 +3,7 @@ import { useState, useReducer, useMemo} from "react"; // track pages state
 import {StyleSheet, Text, View, Pressable, TextInput, Image, ImageBackground } from "react-native";
 import { GlobalStyles } from "../components/GlobalStyles";
 
-const bgImage = require("../../pictures/arena/arena1.jpg");
+const bgImage = require("../../pictures/arena/characterCreatorBG.jpg");
 const HERO_IMAGES = {
     wizard: require("../../pictures/Heroes/wizard.png"),
     knight: require("../../pictures/Heroes/knight.png")

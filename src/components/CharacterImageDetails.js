@@ -39,6 +39,7 @@ const styles=StyleSheet.create({
         justifyContent: 'center',
         width: 400,
         
+        
     },
     imageContainer:{
         width: 250,
@@ -60,6 +61,7 @@ const styles=StyleSheet.create({
     },
     text:{
         fontSize: 30,
+        color: "#f20ef6ff"
     },
     image:{
         width: 200,

@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react"; // track pages state
-import {StyleSheet, Text, View, Pressable } from "react-native";
+import {StyleSheet, Text, View, Pressable, ImageBackground } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { GlobalStyles } from "../components/GlobalStyles";
+
+const bgImage = require("../../pictures/arena/startScreen.jpg");
 
 
 
@@ -19,13 +21,18 @@ const StartScreen = ( {navigation}) => {
     //then we will need to call the function inside the StartScreen return
 
     let startScreenJSX = 
-            <View style={GlobalStyles.container}>
+     <ImageBackground
+                source={bgImage}
+                style={{flex: 1}}
+                resizeMode="cover"
+                >
+            <View style={[GlobalStyles.container, {backgroundColor: "tansparent"}]}>
                     <View style={GlobalStyles.menuStyle}>
-                        <Text style={GlobalStyles.menuStyle}> King Rescue! </Text>
+                        <Text style={[GlobalStyles.menuStyle, {color: "white"}]}> King Rescue! </Text>
                     </View>
                                        
 
-                    <View style={GlobalStyles.container}>
+                    <View style={[GlobalStyles.container, {backgroundColor: "transparent"}]}>
                        
                         <MenuButton 
                             label="Start Playing" 
@@ -44,6 +51,7 @@ const StartScreen = ( {navigation}) => {
                     </View>
 
                 </View>
+                </ImageBackground>
         
     
 
