@@ -57,17 +57,7 @@ const StartScreen = ( {navigation}) => {
 
     } // end let startScreenJSX
 
-    // pressable function to display in the console
-    const pressHandler = function () {
-        console.log("Pressed via pressable!");
-    }
-    // IOS function to work on IOS devices
-    const iosStyleHandler = function (pressObject) {
-        if(pressObject.pressed){
-            return GlobalStyles.iosPressable;
-        }
-    }
-
+    //reusable button used on the menu. it works for andriod and for Iphones.
     const MenuButton = ({label, onPress}) => (
         <Pressable
             android_ripple={{color: '#920c0cff'}}

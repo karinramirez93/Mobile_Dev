@@ -30,6 +30,7 @@ const CharacterImageDetail = function({title, imageSource, onPress}){
 
 const styles=StyleSheet.create({
     container:{
+        
         alignItems: 'center',
         justifyContent: 'center',
         width: 400,
@@ -46,8 +47,8 @@ const styles=StyleSheet.create({
     imageLayout:{
         alignItems: 'center',
         flexDirection: 'row',
-        borderWidth: 4,
-        borderColor: 'purple',
+        // borderWidth: 4,
+        // borderColor: 'purple',
     },
     textContainer:{
         justifyContent: 'center',

@@ -42,12 +42,15 @@ const CharacterPicker = ({Navigation}) => {
 
 const styles = StyleSheet.create({
     backGroundContainer:{
+        flex:1,
         alignItems: 'center',
-        borderColor: 'red',
-        borderWidth: 5,
+        justifyContent: 'center',
+       // borderColor: 'red',
+       // borderWidth: 5,
     },
     text:{
         fontSize: 30,
+        
     },
 
 });// end styleSheet
