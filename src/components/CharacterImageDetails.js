@@ -1,5 +1,7 @@
-import {Text, StyleSheet, View, Image, Pressable} from "react-native";
+import {Text, StyleSheet, View, Image, Pressable,} from "react-native";
 import { GlobalStyles } from "./GlobalStyles";
+
+//creating a reusable component to set up Images 
 
 const CharacterImageDetail = function({title, imageSource, onPress}){
 
@@ -27,6 +29,8 @@ const CharacterImageDetail = function({title, imageSource, onPress}){
     );
 
 }// end CharacterImageDetail()
+
+
 
 const styles=StyleSheet.create({
     container:{

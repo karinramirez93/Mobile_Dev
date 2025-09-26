@@ -4,9 +4,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import StartScreen from './src/screens/StartScreen';
-import CharacterCreator from './src/screens/CharacterCreator';
-import ScoreScreen from './src/screens/ScoreHistory';
 import CharacterPicker from './src/screens/CharacterPicker';
+import CharacterCreator from './src/screens/CharacterCreator';
+import CombatScreen from './src/screens/CombatScreen';
+import ScoreScreen from './src/screens/ScoreHistory';
 
 
 let Stack = createNativeStackNavigator();
@@ -20,8 +21,8 @@ const  App = () => {
         <Stack.Navigator>
           <Stack.Screen  name= "Main_Menu" component={StartScreen} options={{headerTitleAlign: 'center',}}/>
           <Stack.Screen name= "Character Creator" component={CharacterCreator} options={{headerTitleAlign: 'center',}}/>
-          <Stack.Screen name= "ScoreBoard" component={ScoreScreen} options={{headerTitleAlign: 'center',}}/>
           <Stack.Screen name= "Character Picker" component={CharacterPicker} options={{headerTitleAlign: 'center',}}/>
+          <Stack.Screen name= "ScoreBoard" component={ScoreScreen} options={{headerTitleAlign: 'center',}}/>
 
         </Stack.Navigator>
 

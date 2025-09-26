@@ -1,7 +1,7 @@
 import{View, Text, StyleSheet, SafeAreaView} from "react-native";
 import CharacterImageDetail from "../components/CharacterImageDetails";
 
-const CharacterPicker = ({Navigation}) => {
+const CharacterPicker = ({navigation}) => {
     let picker = 
     <View style={styles.container}>
             <Text style={styles.title}> Pick Your Warrior</Text>
@@ -13,7 +13,7 @@ const CharacterPicker = ({Navigation}) => {
                     title= 'Wizard'
                     imageSource={require("../../pictures/Heroes/wizard.png")}
                     onPress={() =>
-                        Navigation.navigate("Character Creator", {
+                        navigation.navigate("Character Creator", {
                             hero: { name: "Wizard", image: "wizard"},
                         })
                     }
@@ -23,7 +23,7 @@ const CharacterPicker = ({Navigation}) => {
                     title= 'Knight'
                     imageSource={require("../../pictures/Heroes/knight.png")}
                     onPress={() =>
-                        Navigation.navigate("Character Creator", {
+                        navigation.navigate("Character Creator", {
                             hero: { name: "Knight", image: "knight"},
                         })
                     }

@@ -6,7 +6,8 @@ import { GlobalStyles } from "../components/GlobalStyles";
 
 
 
-const ScoreScreen = ({Navigation}) => {
+
+const ScoreScreen = ({navigation}) => {
 
     let ScoreScreenJSK =
         <View style={[GlobalStyles.container, {backgroundColor: '#7e3869ff'}]}>
