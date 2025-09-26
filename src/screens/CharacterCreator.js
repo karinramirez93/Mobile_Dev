@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { useState, useReducer, useMemo} from "react"; // track pages state
-
-import {StyleSheet, Text, View, Pressable, TextInput, Image } from "react-native";
+import {StyleSheet, Text, View, Pressable, TextInput, Image, ImageBackground } from "react-native";
 import { GlobalStyles } from "../components/GlobalStyles";
 
+const bgImage = require("../../pictures/arena/arena1.jpg");
 const HERO_IMAGES = {
     wizard: require("../../pictures/Heroes/wizard.png"),
     knight: require("../../pictures/Heroes/knight.png")
@@ -96,7 +96,12 @@ const CharacterCreator = ({route, navigation}) => {
     };
 
     return(
-        <View style = {[GlobalStyles.container, styles.pad]}>
+        <ImageBackground
+        source={bgImage}
+        style={{flex: 1}}
+        resizeMode="cover"
+        >
+        <View style = {[GlobalStyles.container, styles.pad, {backgroundColor:"transparent"}]}>
             <Text style = {[GlobalStyles.text, styles.header]}>Customize Your Hero</Text>
 
             {/* Hero Preview */}
@@ -116,7 +121,7 @@ const CharacterCreator = ({route, navigation}) => {
                 value= {playerName}
                 onChangeText= {setPlayerName}
                 placeholder= 'Enter your player or hero name'
-                placeholderTextColor= "#020202ff"
+                placeholderTextColor= "#ffffffff"
                 autoCapitalize= "words"
                 autoCorrect = {false}
                 style = {styles.input}
@@ -188,6 +193,7 @@ const CharacterCreator = ({route, navigation}) => {
             </View>
 
         </View>
+        </ImageBackground>
     
     );
 };
@@ -197,7 +203,7 @@ const StatAdjuster = ({ label, base, allocated, total, onInc, onDec, outOfPoints
     <View style={styles.statRow}>
         <View>
             <Text style={styles.label}>{label}</Text>
-            <Text style={styles.subLabel}>
+            <Text style={styles.label}>
                 Base {base} + Spent {allocated}
             </Text>
         </View>
@@ -220,7 +226,7 @@ const styles = StyleSheet.create({
   pad: { paddingHorizontal: 16 },
   header: { color: "#fff", textAlign: "center", fontSize: 20, marginBottom: 8 },
   heroImage: { width: 120, height: 120, resizeMode: "contain", alignSelf: "center" },
-  heroName: { color: "#fff", textAlign: "center", marginTop: 6, marginBottom: 6 },
+  heroName: { color: "#000000ff", textAlign: "center", marginTop: 6, marginBottom: 6, backgroundColor: "white"},
   input: {
     width: "90%",
     alignSelf: "center",
@@ -253,7 +259,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 8,
-    backgroundColor: "rgba(255,255,255,0.08)",
+    backgroundColor: "rgba(22, 89, 128, 0.08)",
     borderRadius: 8,
   },
   label: { color: "#fff" },
