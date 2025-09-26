@@ -26,7 +26,7 @@ const StartScreen = ( {navigation}) => {
                 style={{flex: 1}}
                 resizeMode="cover"
                 >
-            <View style={[GlobalStyles.container, {backgroundColor: "tansparent"}]}>
+            <View style={[GlobalStyles.container, {backgroundColor: "transparent"}]}>
                     <View style={GlobalStyles.menuStyle}>
                         <Text style={[GlobalStyles.menuStyle, {color: "white"}]}> King Rescue! </Text>
                     </View>
