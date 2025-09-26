@@ -27,7 +27,7 @@ const HERO_BASE_STATS = {
 
 //making some constant minumum values and total points to spend
 const MIN_CHARACTER_VALUES= {strength: 0, health: 0, magic: 0};
-const STARTING_POINTS = 15;
+const STARTING_POINTS = 5;
 
 //allocation stats state
 const initialAllocation= {
