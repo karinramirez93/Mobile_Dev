@@ -198,7 +198,12 @@ const CharacterCreator = ({route, navigation}) => {
     );
 };
 
-//reusable +/- stats row
+/**
+ * stat rows
+ * shows "base + spend stats"
+ * the new stats is displayed in the middle of - +
+ * -/+ buttons modify allocated stats
+ */
 const StatAdjuster = ({ label, base, allocated, total, onInc, onDec, outOfPoints}) => (
     <View style={styles.statRow}>
         <View>
@@ -210,7 +215,7 @@ const StatAdjuster = ({ label, base, allocated, total, onInc, onDec, outOfPoints
 
         <View style={styles.controls}>
             <Pressable onPress={onDec} disabled={allocated <= 0} style={styles.smallBtn}>
-                <Text style={styles.smallBtnText}>-</Text>
+                <Text style={styles.smallBtnText}>-</Text> 
             </Pressable>
 
             <Text style={styles.value}>{total}</Text>

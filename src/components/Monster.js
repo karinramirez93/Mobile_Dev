@@ -6,7 +6,7 @@ const Monster = {
     name: "Goblin",
     image: require("../../pictures/enemies/magicGoblin.png"),
     health: 100,        // starting health level
-    strength: 20,      // fixed damage per attack
+    strength: 3,      // fixed damage per attack
 };
 
 export default Monster;

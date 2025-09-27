@@ -51,15 +51,8 @@ const CharacterPicker = ({navigation}) => {
 
 
 const styles = StyleSheet.create({
-    container:{
-        alignItems: 'center',
-        paddingTop: 24,
-    },
-    title: {
-        fontSize: 40,
-        marginBottom: 16,
-        color: "#f5f5f5ff"
-    }
+    container:{ alignItems: 'center',  paddingTop: 24, },
+    title: { fontSize: 40, marginBottom: 16, color: "#f5f5f5ff" }
 
 });// end styleSheet
 
