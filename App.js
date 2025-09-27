@@ -7,7 +7,7 @@ import StartScreen from './src/screens/StartScreen';
 import CharacterPicker from './src/screens/CharacterPicker';
 import CharacterCreator from './src/screens/CharacterCreator';
 import CombatScreen from './src/screens/CombatScreen';
-import ScoreScreen from './src/screens/ScoreHistory';
+
 
 
 let Stack = createNativeStackNavigator();
@@ -23,7 +23,7 @@ const  App = () => {
           <Stack.Screen name= "Character Creator" component={CharacterCreator} options={{headerTitleAlign: 'center',}}/>
           <Stack.Screen name= "Character Picker" component={CharacterPicker} options={{headerTitleAlign: 'center',}}/>
           <Stack.Screen name= "Combat" component={CombatScreen} options={{headerTitleAlign: 'center',}}/>
-          <Stack.Screen name= "ScoreBoard" component={ScoreScreen} options={{headerTitleAlign: 'center',}}/>
+          
 
         </Stack.Navigator>
 

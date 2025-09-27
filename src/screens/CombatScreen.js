@@ -1,17 +1,18 @@
 import { View, Text, StyleSheet, Image, Pressable, FlatList, ImageBackground } from "react-native";
+import { HERO_IMAGES,} from "./CharacterCreator";
 import { GlobalStyles } from "../components/GlobalStyles";
 import MONSTER from "../components/Monster";
 import { useReducer } from "react";
 
-import { HERO_IMAGES, HERO_BASE_STATS } from "./CharacterCreator";
 
 //backgrondImage for combat
 const COMBAT_BG= require("../../pictures/arena/arena2.png");
 
+//Helper: support either a remote URI (imageUrl) or a local require (image)
 function resolveHeroImage(hero) {
   if (!hero) return null;
-  if (hero.imageSource) return hero.imageSource;
-  if (hero.imageUrl)   return { uri: hero.imageUrl };
+  if (hero.imageSource) return hero.imageSource; //local require("...")
+  if (hero.imageUrl)   return { uri: hero.imageUrl }; // remote URL
   if (hero.image && HERO_IMAGES[hero.image]) return HERO_IMAGES[hero.image];
   return null;
 }
@@ -24,9 +25,9 @@ function resolveMonsterImage() {
 }
 const MONSTER_IMG_SRC = resolveMonsterImage();
 
-//create the initial combat state
-
+//--------create the initial combat state----------
 function makeInitialCombat(route){
+    //check player/hero info + stats; in case no found use the following
     const player = route?.params?.player ?? {name: "Hero", strength: 1, health: 10, magic: 1};
     const hero = route?.params?.hero ?? {name: "Unknown", image: null};
 
@@ -73,7 +74,7 @@ function combatReducer(state, action){
         //----player actions -----
         case "PLAYER_ATTACK": {
             if (state.ended) return state;
-            const dmg = state.pStr;
+            const dmg = state.pStr; // take damage values from player strength
             const mNew = Math.max(0, state.mHP - dmg);
             return {...state, mHP: mNew, log: [`You strike for ${dmg}.`, ...state.log] };
         }
@@ -167,7 +168,7 @@ function CombatScreen({route, navigation}){
     const renderLog = ({item}) => <Text style={styles.logLine}>• {item}</Text>
 
     const body = (
-        <View style={[GlobalStyles.container, styles.pad, {backgroundColor:"transparent"}]}>
+        <View style={[GlobalStyles.container, styles.pad, {backgroundColor:"transparent", paddingBottom: 40}]}>
             <Text style={[GlobalStyles.text, styles.header]}>⚔️ Battle</Text>
 
             {/* player vs Monster stats */}

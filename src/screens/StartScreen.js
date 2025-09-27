@@ -32,21 +32,13 @@ const StartScreen = ( {navigation}) => {
                     </View>
                                        
 
-                    <View style={[GlobalStyles.container, {backgroundColor: "transparent"}]}>
+                    <View style={[GlobalStyles.container, {backgroundColor: "transparent", marginTop: 200}]}>
                        
                         <MenuButton 
                             label="Start Playing" 
                             // onPress={() => console.log("Start Playing")} 
                             onPress={() => navigation.navigate("Character Picker")}
                         />
-                        <MenuButton 
-                            label="Score" 
-                            // onPress={() => console.log("ScoreBoard")} 
-                            onPress={() => navigation.navigate("ScoreBoard")}
-                        />
-
-
-                        
 
                     </View>
 
