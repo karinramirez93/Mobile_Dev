@@ -4,7 +4,7 @@ import {StyleSheet, Text, View, Pressable, TextInput, Image, ImageBackground } f
 import { GlobalStyles } from "../components/GlobalStyles";
 
 const bgImage = require("../../pictures/arena/characterCreatorBG.jpg");
-const HERO_IMAGES = {
+export const HERO_IMAGES = {
     wizard: require("../../pictures/Heroes/wizard.png"),
     knight: require("../../pictures/Heroes/knight.png")
 };
@@ -17,9 +17,9 @@ function resolveHeroImage(hero) {
 }
 
 // Hero Base Stats
-const HERO_BASE_STATS = {
-    wizard: { strength: 2, health: 12, magic: 6},
-    knight: { strength: 5, health: 16, magic: 2},
+export const HERO_BASE_STATS = {
+    wizard: { strength: 2, health: 50, magic: 40},
+    knight: { strength: 5, health: 85, magic: 3},
 
     default: {strength: 3, health: 12, magic: 3},
 };

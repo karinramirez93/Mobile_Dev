@@ -18,10 +18,11 @@ const  App = () => {
       <>
       <StatusBar style= "auto" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions = {{headerTitleAlign: 'center'}}>
           <Stack.Screen  name= "Main_Menu" component={StartScreen} options={{headerTitleAlign: 'center',}}/>
           <Stack.Screen name= "Character Creator" component={CharacterCreator} options={{headerTitleAlign: 'center',}}/>
           <Stack.Screen name= "Character Picker" component={CharacterPicker} options={{headerTitleAlign: 'center',}}/>
+          <Stack.Screen name= "Combat" component={CombatScreen} options={{headerTitleAlign: 'center',}}/>
           <Stack.Screen name= "ScoreBoard" component={ScoreScreen} options={{headerTitleAlign: 'center',}}/>
 
         </Stack.Navigator>
