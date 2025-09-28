@@ -4,8 +4,8 @@ export const HERO_IMAGES = {
 };
 
 export const HERO_BASE_STATS = {
-  wizard:  { strength: 2, health: 12, magic: 6 },
-  knight:  { strength: 5, health: 16, magic: 2 },
+  wizard:  { strength: 3, health: 45, magic: 50 },
+  knight:  { strength: 15, health: 55, magic: 3 },
   default: { strength: 3, health: 12, magic: 3 },
 };
 

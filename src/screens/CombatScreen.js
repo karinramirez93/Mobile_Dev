@@ -3,11 +3,7 @@
  * shows hero + monster, a log, and 3 actions butoons
  */
 
-
-
-
 import { View, Text, StyleSheet, Image, Pressable, FlatList, ImageBackground } from "react-native";
-import { HERO_IMAGES,} from "./CharacterCreator";
 import { GlobalStyles } from "../components/GlobalStyles";
 import MONSTER from "../components/Monster";
 import { useReducer } from "react";
@@ -17,13 +13,7 @@ import { getHeroImage } from "../components/Heroes";
 //backgrondImage for combat
 const backGroundImage= require("../../pictures/arena/arena2.png");
 
-// Helper: support either a remote URI (imageUri) OR a local require (image)
-function resolveMonsterImage() {
-  if (MONSTER.image) return MONSTER.image;               // local: require("...")
-  if (MONSTER.imageUri) return { uri: MONSTER.imageUri };// remote URL
-  return null;
-}
-const MONSTER_IMG_SRC = resolveMonsterImage();
+
 
 //--------create the initial combat state----------
 function makeInitialCombat(route){
@@ -187,7 +177,7 @@ function CombatScreen({route, navigation}){
                 </View>
 
                 <View style={{alignItems: "center"}}>
-                    {MONSTER_IMG_SRC && <Image source={MONSTER_IMG_SRC} style={styles.monsterImg} />}
+                    {MONSTER.image && <Image source={MONSTER.image} style={styles.monsterImg} />}
                     <Text style={styles.monsterName}>{MONSTER.name}</Text>
                     <Text style={styles.stat}>HP: {state.mHP}</Text>
                     <Text style={styles.stat}>STR: {MONSTER.strength}</Text>

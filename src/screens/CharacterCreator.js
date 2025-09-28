@@ -1,19 +1,10 @@
 import { useState, useReducer, useMemo} from "react"; // track pages state
 import {StyleSheet, Text, View, Pressable, TextInput, Image, ImageBackground } from "react-native";
 import { GlobalStyles } from "../components/GlobalStyles";
-import { HERO_IMAGES, HERO_BASE_STATS,getHeroImage } from "../components/Heroes";
+import {HERO_BASE_STATS,getHeroImage } from "../components/Heroes";
 
 
 const backGroundImage = require("../../pictures/arena/characterCreatorBG.jpg");
-
-
-function resolveHeroImage(hero) {
-  if (!hero) return null; // nothing passed
-  if (hero.imageSource) return hero.imageSource; // already a require("...pathImage")
-  if (hero.imageUrl) return { uri: hero.imageUrl }; // remote URL in case to use one instead a local image
-  if (hero.image && HERO_IMAGES[hero.image]) return HERO_IMAGES[hero.image]; //key lookup
-  return null; // none found
-}
 
 //making some constant minumum values and total points to spend
 const MIN_CHARACTER_VALUES= {strength: 0, health: 0, magic: 0};
