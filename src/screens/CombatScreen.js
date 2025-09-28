@@ -1,21 +1,21 @@
+/**
+ * where the action is happening, battle vs monster.
+ * shows hero + monster, a log, and 3 actions butoons
+ */
+
+
+
+
 import { View, Text, StyleSheet, Image, Pressable, FlatList, ImageBackground } from "react-native";
 import { HERO_IMAGES,} from "./CharacterCreator";
 import { GlobalStyles } from "../components/GlobalStyles";
 import MONSTER from "../components/Monster";
 import { useReducer } from "react";
+import { getHeroImage } from "../components/Heroes";
 
 
 //backgrondImage for combat
-const COMBAT_BG= require("../../pictures/arena/arena2.png");
-
-//Helper: support either a remote URI (imageUrl) or a local require (image)
-function resolveHeroImage(hero) {
-  if (!hero) return null;
-  if (hero.imageSource) return hero.imageSource; //local require("...")
-  if (hero.imageUrl)   return { uri: hero.imageUrl }; // remote URL
-  if (hero.image && HERO_IMAGES[hero.image]) return HERO_IMAGES[hero.image];
-  return null;
-}
+const backGroundImage= require("../../pictures/arena/arena2.png");
 
 // Helper: support either a remote URI (imageUri) OR a local require (image)
 function resolveMonsterImage() {
@@ -62,7 +62,7 @@ function combatReducer(state, action){
         case "LOG":
             return {...state, log: [action.message, ...state.log]};
 
-        case "SET_PHP": return {...state, pHP: Math.max(0, action.value) };
+        case "SET_PHP": return {...state, pHP: Math.max(0, action.value) }; // Math.max endures the value does not drop below minumum
 
         case "SET_PMP": return {...state, pMP: Math.max(0, action.value) };
 
@@ -99,9 +99,9 @@ function combatReducer(state, action){
 
         case "PLAYER_FIRE": {
             if(state.ended) return state;
-            const cost = 3;
+            const cost = 3; // magic power cost of the fire attack
             if( state.pMP < cost) return {...state, log:["Not enough magic!", state.log]};
-            const dmg = Math.floor(state.mHP /2) ;
+            const dmg = Math.floor(state.mHP /2);
             const mNew = Math.max(0, state.mHP - dmg);
             return {...state, pMP: state.pMP - cost, mHP: mNew, 
                     log:[`Fire hits for ${dmg}. (-${cost} MP)`, ...state.log] };
@@ -123,7 +123,7 @@ function combatReducer(state, action){
 
 function CombatScreen({route, navigation}){
     const [state, dispatch] = useReducer(combatReducer, route, makeInitialCombat);
-    const heroImg = resolveHeroImage(state.hero);
+    const heroImg = getHeroImage(state.hero);
 
     //after a player action: victory? else monster counter (then maybe defeat)
     const postPlayerAction = (monsterHPAfter) => {
@@ -231,7 +231,7 @@ function CombatScreen({route, navigation}){
 
     return(
         <ImageBackground
-            source={COMBAT_BG}
+            source={backGroundImage}
             style={{flex:1}}
             resizeMode="cover"
         >

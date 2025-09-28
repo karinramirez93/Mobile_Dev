@@ -9,7 +9,7 @@ import CharacterCreator from './src/screens/CharacterCreator';
 import CombatScreen from './src/screens/CombatScreen';
 
 
-
+//create a stack object to declare <stack.Navigator> and <stack.screen>
 let Stack = createNativeStackNavigator();
 
 const  App = () => {

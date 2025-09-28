@@ -1,5 +1,6 @@
 /**
  * A monster set up to play against the player
+ * and will help for implementing more monster later on
  */
 
 const MONSTER = {

@@ -1,29 +1,19 @@
-import { StatusBar } from "expo-status-bar";
 import { useState, useReducer, useMemo} from "react"; // track pages state
 import {StyleSheet, Text, View, Pressable, TextInput, Image, ImageBackground } from "react-native";
 import { GlobalStyles } from "../components/GlobalStyles";
+import { HERO_IMAGES, HERO_BASE_STATS,getHeroImage } from "../components/Heroes";
 
-const bgImage = require("../../pictures/arena/characterCreatorBG.jpg");
-export const HERO_IMAGES = {
-    wizard: require("../../pictures/Heroes/wizard.png"),
-    knight: require("../../pictures/Heroes/knight.png")
-};
+
+const backGroundImage = require("../../pictures/arena/characterCreatorBG.jpg");
+
+
 function resolveHeroImage(hero) {
-  if (!hero) return null;
-  if (hero.imageSource) return hero.imageSource;
-  if (hero.imageUrl) return { uri: hero.imageUrl };
-  if (hero.image && HERO_IMAGES[hero.image]) return HERO_IMAGES[hero.image];
-  return null;
+  if (!hero) return null; // nothing passed
+  if (hero.imageSource) return hero.imageSource; // already a require("...pathImage")
+  if (hero.imageUrl) return { uri: hero.imageUrl }; // remote URL in case to use one instead a local image
+  if (hero.image && HERO_IMAGES[hero.image]) return HERO_IMAGES[hero.image]; //key lookup
+  return null; // none found
 }
-
-// Hero Base Stats
-export const HERO_BASE_STATS = {
-    wizard: { strength: 2, health: 50, magic: 40},
-    knight: { strength: 5, health: 85, magic: 3},
-
-    default: {strength: 3, health: 12, magic: 3},
-};
-
 
 //making some constant minumum values and total points to spend
 const MIN_CHARACTER_VALUES= {strength: 0, health: 0, magic: 0};
@@ -34,24 +24,24 @@ const initialAllocation= {
     strength: MIN_CHARACTER_VALUES.strength,
     health: MIN_CHARACTER_VALUES.health,
     magic: MIN_CHARACTER_VALUES.magic,
-    pointsRemaining: STARTING_POINTS,
+    skill_Points_Remaining: STARTING_POINTS,
 };
 
 function allocationReducer(state, action){
     switch (action.type){
-        // increment the stats values in case user try to increment a stat
+        // increment the stats values in case user still have skill points to add
         case "inc": {
-            if(state.pointsRemaining <= 0) return state;
-            const s= action.stat;
-            return {...state, [s]: state[s] +1, pointsRemaining: state.pointsRemaining -1}
+            if(state.skill_Points_Remaining <= 0) return state;
+            const s= action.stat; //"strength" | "health" | "magic"
+            return {...state, [s]: state[s] +1, skill_Points_Remaining: state.skill_Points_Remaining -1}
         }
         // decrement stats values in case a point is taken away
         case "dec": {
             const s = action.stat;
             if(state[s] <= MIN_CHARACTER_VALUES[s]) return state;
-            return {...state, [s]: state[s] - 1, pointsRemaining: state.pointsRemaining +1}
+            return {...state, [s]: state[s] - 1, skill_Points_Remaining: state.skill_Points_Remaining +1}
         }
-        case "reset":
+        case "reset":   // reset allocated points to spend to initial values
             return initialAllocation;
         default:
             return state;
@@ -59,27 +49,28 @@ function allocationReducer(state, action){
 }
 
 const CharacterCreator = ({route, navigation}) => {
-    //hero from pricker (name + image)
+    //hero from picker (name + image)
     const hero = route?.params?.hero ?? { name: "unknowm", imageSource: null};
-    const heroImageSource = resolveHeroImage(hero);
+    const heroImage = getHeroImage(hero);
 
-    // new pick base stats by hero key; fallback to default
+    //pick base stats by hero key; fallback to default
     const base = useMemo(() => {
         const key = hero?.image ?? "default";
         return HERO_BASE_STATS[key] || HERO_BASE_STATS.default;
     },
     [hero]);
 
+    //Allocation state managed by reducer
     const [alloc, dispatch] = useReducer(allocationReducer, initialAllocation);
 
-    //changed: total are derived (base + state)
+    //change the base stats + the allocated points assigned
     const total = {
         strength: base.strength + alloc.strength,
         health: base.health + alloc.health,
         magic: base.magic + alloc.magic,
     };
 
-    //simple player/hero name input (class: controlled TextInput)
+    //player/hero name input
     const [playerName, setPlayerName] = useState("");
 
     //navigate to combat and pass the final stats + hero info + name
@@ -97,7 +88,7 @@ const CharacterCreator = ({route, navigation}) => {
 
     return(
         <ImageBackground
-        source={bgImage}
+        source={backGroundImage}
         style={{flex: 1}}
         resizeMode="cover"
         >
@@ -105,9 +96,9 @@ const CharacterCreator = ({route, navigation}) => {
             <Text style = {[GlobalStyles.text, styles.header]}>Customize Your Hero</Text>
 
             {/* Hero Preview */}
-            {heroImageSource && 
+            {heroImage && 
                 <Image
-                source={heroImageSource}
+                source={heroImage}
                 style={styles.heroImage}
                 />
                 
@@ -122,8 +113,8 @@ const CharacterCreator = ({route, navigation}) => {
                 onChangeText= {setPlayerName}
                 placeholder= 'Enter your player or hero name'
                 placeholderTextColor= "#ffffffff"
-                autoCapitalize= "words"
-                autoCorrect = {false}
+                autoCapitalize= "words" //capitalize every initial letter of a word
+                autoCorrect = {false} // autocorrect words is dissable
                 style = {styles.input}
             />
             {/* a small condition to tell the player to have at least 3 character as a name */}
@@ -132,9 +123,9 @@ const CharacterCreator = ({route, navigation}) => {
             )}
 
             {/* //shows how many points are available */}
-            <Text style = {styles.points}>Points remaining: {alloc.pointsRemaining}</Text>
+            <Text style = {styles.points}>Points remaining: {alloc.skill_Points_Remaining}</Text>
 
-            {/* three stats rows { strength, health, magic*/}
+            {/* three stats rows { strength, health, magic} for the Heroe selected*/}
             <View style = {styles.card}>
                 <StatAdjuster
                     label="Strength"
@@ -143,7 +134,7 @@ const CharacterCreator = ({route, navigation}) => {
                     total={total.strength}
                     onInc={() => dispatch({ type: "inc", stat: "strength" })}
                     onDec={() => dispatch({ type: "dec", stat: "strength" })}
-                    outOfPoints={alloc.pointsRemaining === 0}
+                    outOfPoints={alloc.skill_Points_Remaining === 0}
                 />
                 <StatAdjuster
                     label="Health"
@@ -152,7 +143,7 @@ const CharacterCreator = ({route, navigation}) => {
                     total={total.health}
                     onInc={() => dispatch({ type: "inc", stat: "health" })}
                     onDec={() => dispatch({ type: "dec", stat: "health" })}
-                    outOfPoints={alloc.pointsRemaining === 0}
+                    outOfPoints={alloc.skill_Points_Remaining === 0}
                 />
                 <StatAdjuster
                     label="Magic"
@@ -161,7 +152,7 @@ const CharacterCreator = ({route, navigation}) => {
                     total={total.magic}
                     onInc={() => dispatch({ type: "inc", stat: "magic" })}
                     onDec={() => dispatch({ type: "dec", stat: "magic" })}
-                    outOfPoints={alloc.pointsRemaining === 0}
+                    outOfPoints={alloc.skill_Points_Remaining === 0}
                 />
             </View>
 
@@ -175,7 +166,7 @@ const CharacterCreator = ({route, navigation}) => {
                     <Text style = {styles.secondaryBtnText}>Reset</Text>
                 </Pressable>
 
-                {alloc.pointsRemaining === 0 ? (
+                {alloc.skill_Points_Remaining === 0 ? (
                 <Pressable
                     onPress = {beginBattle}
                     android_ripple= {{color: "#920c0cff"}}
@@ -241,7 +232,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginBottom: 12,
   },
-  warn: { color: "#ffdddd", textAlign: "center", marginBottom: 8 },
+  warn: { color: "#f40000ff", textAlign: "center", marginBottom: 8, fontSize: 20},
   points: { color: "#fff", textAlign: "center", marginBottom: 16 },
   card: { gap: 10, width: "100%" },
   actions: { marginTop: 20, alignItems: "center", gap: 10 },
@@ -264,7 +255,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 8,
-    backgroundColor: "rgba(22, 89, 128, 0.08)",
+    backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderRadius: 8,
   },
   label: { color: "#fff" },
@@ -276,7 +267,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
   },
-  smallBtnText: { color: "blue", fontWeight: "600" },
+  smallBtnText: { color: "blue", fontWeight: "600", fontSize: 20 },
 });
 
 export default CharacterCreator
